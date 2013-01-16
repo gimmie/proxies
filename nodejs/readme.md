@@ -28,35 +28,3 @@ and want to configure reverse-proxy to point to Gimmie Proxy directly.
           api: 'http://yourdomain.com/gimmie/api?'
         }
 
-##Setup for Reverse-Proxy style
-
-- Create new node.js application with gimmie in package.json dependencies
-- Below is sample proxy code
-
-        var gimmie = require('gimmie-node');
-
-        gimmie.configure({
-          'COOKIE': 'cookie_key',
-          'OAUTH_KEY': 'oauth_key',
-          'OAUTH_SEC': 'oauth_secret'});
-
-        var server = gimmie.server;
-        server.start();
-
-- Start application with node <your node.js file>. It will listen on port 8080.
-- Point your proxy to this port below is sample nginx configuration
-
-        upstream gimmie {
-          server 127.0.0.1:8080;
-        }
-
-        server {
-          ...
-          location /api { proxy_pass http://gimmie; }
-        }
-
-- Update api point in widget configuration
-
-        var _gimmie = {
-          api: 'http://yourdomain.com/api?'
-        }
