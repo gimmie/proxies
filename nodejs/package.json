@@ -1,0 +1,12 @@
+{
+  "name": "gimmie-node",
+  "version": "1.0.1",
+  "dependencies": {
+    "cookies": "0.3.x",
+    "oauth": "0.9.x"
+  },
+  "main": "./gimmie",
+  "engines": {
+    "node": ">= 0.8"
+  }
+}

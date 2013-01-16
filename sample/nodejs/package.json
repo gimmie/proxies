@@ -1,0 +1,14 @@
+{
+  "name":"sample",
+  "version":"1.0.0",
+  "author":"llun",
+  "description":"Project Description",
+  "dependencies":{
+    "cookies": "*",
+    "gimmie-node": "*",
+    "mime": "*"
+  },
+  "engines":{
+    "node":"0.8"
+  }
+}
