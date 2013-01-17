@@ -35,7 +35,7 @@ var Gimmie = {
 
     Gimmie.proxy = function (request, response) {
       var target = url.parse(request.url);
-      var query = querystring.parse(target.query);
+      var path = target.query.substring('gimmieapi='.length);
 
       var user = '';
       var cookies = new Cookies(request, response);
@@ -43,7 +43,7 @@ var Gimmie = {
         user = cookies.get(Gimmie._configuration.cookie_key);
       }
 
-      var endpoint = Gimmie._endpoint + query.gimmieapi;
+      var endpoint = Gimmie._endpoint + path;
       Gimmie.OAuth.get(endpoint, user, Gimmie._configuration.oauth_secret,
         function (error, data) {
           response.writeHead(200, {
