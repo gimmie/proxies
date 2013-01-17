@@ -6,6 +6,13 @@ gimmie.configure({
   '_endpoint' : 'http://api.lvh.me:3000'
 });
 
+describe("endpoint_suffix", function() {
+  it("should take REQUEST_URI, split by 'gimmieapi=' and use the last segment as suffix", function() {
+    var request = { url: 'http://lousy.gov/router.jsp?gimmieapi=gimmie.jsphelloworldgimmieapi=/1/rewards.json?reward_id=2&x%20y?1://' };
+    expect(gimmie.endpoint_suffix(request)).toBe('/1/rewards.json?reward_id=2&x%20y?1://'); // raw value, no parsing whatsoever
+  });
+});
+
 describe("proxy", function() {
   var result = [];
   var request = {
