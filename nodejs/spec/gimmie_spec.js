@@ -20,7 +20,7 @@ describe("proxy", function() {
     headers: {} // needed to make "new Cookies(request, response);" happy
   }
   var response = {};
-  it("should work", function() {
+  it("should call correct endpoint url", function() {
     spyOn(gimmie.OAuth, 'get').andCallFake(function(url, other, stuff) {
       expect(url).toBe('http://api.lvh.me:3000/1/rewards.json?reward_id=3');
     });
