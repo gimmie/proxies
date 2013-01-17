@@ -5,6 +5,9 @@
     "cookies": "0.3.x",
     "oauth": "0.9.x"
   },
+  "devDependencies": {
+    "jasmine-node": "1.0.28"
+  },
   "main": "./gimmie",
   "engines": {
     "node": ">= 0.8"
