@@ -1,6 +1,6 @@
 {
   "name": "gimmie-node",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "dependencies": {
     "cookies": "0.3.x",
     "oauth": "0.9.x"
