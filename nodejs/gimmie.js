@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /*
  * 1. Use this as a library
  * - e.g. var gimmie = require('gimmie');
@@ -32,9 +33,13 @@ ApiProxy.prototype.endpoint_suffix = function(request) {
 ApiProxy.prototype.proxy = function(request, response) {
   var proxy = this;
   var cookies = new Cookies(request, response);
-  var player_uid = (cookies.get(proxy.cookie_key) ? cookies.get(proxy.cookie_key) : null);
+  var player_uid = proxy.cookie_key ? cookies.get(proxy.cookie_key) : null;
   var url_suffix = proxy.endpoint_suffix(request);
   var proxy_request = proxy.client.get(url_suffix, player_uid);
+  proxy_request.on('error', function(err) {
+    response.writeHead(500, {});
+    response.end(err.toString())
+  });
   proxy_request.on('response', function(proxy_response) {
     proxy_response.pipe(response);
     response.writeHead(proxy_response.statusCode, proxy_response.headers);
@@ -55,8 +60,10 @@ if (process.argv[1] == __filename) {
       'oauth_secret': process.env['OAUTH_SECRET'],
       'url_prefix':   process.env['URL_PREFIX']
     });
+    var port = process.argv[2] || 8000;
     require('http').createServer(function (req, res) {
       proxy.proxy(req, res);
-    }).listen(process.argv[2] || 8000);
+    }).listen(port);
+    console.log("Proxying Gimmie API on port", port);
   })();
 }

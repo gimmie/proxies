@@ -70,7 +70,7 @@ describe("proxy", function() {
       spyOn(oauth_response, 'pipe').andCallFake(function(target) {
         expect(target).toBe(response);
       });
-      oauth_request.on = function(event_name, callback) { callback(oauth_response); }
+      oauth_request.on = function(event_name, callback) { if (event_name == 'response') callback(oauth_response); }
       proxy.proxy(request, response);
       expect(response.writeHead).toHaveBeenCalled();
       expect(oauth_response.pipe).toHaveBeenCalled();
