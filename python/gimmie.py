@@ -12,6 +12,7 @@
 import wsgiref.util
 import urllib2
 import oauth2
+import json
 import Cookie
 
 def get_player_uid(environ, cookie_key):
@@ -55,6 +56,10 @@ class Client:
       return [status, headers, res]
     except urllib2.HTTPError, e:
       return ["%d %s" % (e.code, e.msg), [], e.msg]
+
+  def getJSON(self, url_suffix, player_uid = None):
+    status, headers, body = self.get(url_suffix, player_uid)
+    return json.load(body)
 
 if __name__ == "__main__":
   import os
