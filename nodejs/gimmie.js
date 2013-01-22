@@ -34,10 +34,8 @@ ApiProxy.prototype.proxy = function(request, response) {
   var cookies = new Cookies(request, response);
   var player_uid = (cookies.get(proxy.cookie_key) ? cookies.get(proxy.cookie_key) : null);
   var url_suffix = proxy.endpoint_suffix(request);
-  proxy.client.get(url_suffix, player_uid, function (error, data) {
-    response.writeHead(200, {
-      'Content-Type': 'application/json'
-    });
+  proxy.client.get(url_suffix, player_uid, function (error, data, reply) {
+    response.writeHead(reply.statusCode, reply.headers);
     response.end(data);
   });
 }
