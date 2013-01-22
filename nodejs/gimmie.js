@@ -18,7 +18,7 @@ var Client = function(config) {
 }
 Client.prototype.get = function(url_suffix, player_uid, callback) {
   var client = this;
-  client.OAuth.get(client.config.url_prefix + url_suffix, player_uid, client.oauth_secret, callback);
+  return client.OAuth.get(client.config.url_prefix + url_suffix, player_uid, client.oauth_secret, callback);
 }
 
 var ApiProxy = function(config) {
@@ -34,10 +34,12 @@ ApiProxy.prototype.proxy = function(request, response) {
   var cookies = new Cookies(request, response);
   var player_uid = (cookies.get(proxy.cookie_key) ? cookies.get(proxy.cookie_key) : null);
   var url_suffix = proxy.endpoint_suffix(request);
-  proxy.client.get(url_suffix, player_uid, function (error, data, reply) {
-    response.writeHead(reply.statusCode, reply.headers);
-    response.end(data);
+  var proxy_request = proxy.client.get(url_suffix, player_uid);
+  proxy_request.on('response', function(proxy_response) {
+    proxy_response.pipe(response);
+    response.writeHead(proxy_response.statusCode, proxy_response.headers);
   });
+  request.pipe(proxy_request)
 }
 
 module.exports = {
