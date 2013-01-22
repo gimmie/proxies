@@ -1,58 +1,62 @@
+/*
+ * 1. Use this as a library
+ * - e.g. var gimmie = require('gimmie');
+ * - see block of code at the bottom of this file
+ *
+ * 2. OR run this script as a self-contained HTTP server
+ * - e.g. node gimmie.js 8080
+ * - You'll need to set the environment variables: OAUTH_KEY, OAUTH_SECRET, COOKIE_KEY=_gm_user, URL_PREFIX=https://api.gimmieworld.com
+ */
 var assert = require('assert');
-
 var OAuth = require('oauth').OAuth;
 var Cookies = require('cookies');
 
-var Gimmie = {
-  _endpoint: 'https://api.gimmieworld.com',
-  _configuration: null,
-
-  options: {
-    COOKIE_KEY: 'COOKIE',
-    OAUTH_KEY: 'OAUTH_KEY',
-    OAUTH_SECRET: 'OAUTH_SEC'
-  },
-
-  endpoint_suffix: function(request) {
-    return request.url.split('gimmieapi=').pop();
-  },
-
-  configure: function (options) {
-    assert(options[Gimmie.options.OAUTH_KEY], 'OAUTH_KEY is required');
-    assert(options[Gimmie.options.OAUTH_SECRET], 'OAUTH_SECRET is required');
-
-    Gimmie._configuration = {
-      cookie_key: options[Gimmie.options.COOKIE_KEY] || '_gm_user',
-      oauth_key: options[Gimmie.options.OAUTH_KEY],
-      oauth_secret: options[Gimmie.options.OAUTH_SECRET]
-    }
-
-    if (options._endpoint) Gimmie._endpoint = options._endpoint;
-
-    Gimmie.OAuth = new OAuth('dont need this', 'dont need this too',
-                             Gimmie._configuration.oauth_key,
-                             Gimmie._configuration.oauth_secret,
-                             '1.0', 'dont need this', 'HMAC-SHA1');
-
-    Gimmie.proxy = function (request, response) {
-      var user = '';
-      var cookies = new Cookies(request, response);
-      if (cookies.get(Gimmie._configuration.cookie_key)) {
-        user = cookies.get(Gimmie._configuration.cookie_key);
-      }
-
-      var endpoint = Gimmie._endpoint + Gimmie.endpoint_suffix(request);
-      Gimmie.OAuth.get(endpoint, user, Gimmie._configuration.oauth_secret,
-        function (error, data) {
-          response.writeHead(200, {
-            'Content-Type': 'application/json'
-          });
-          response.end(data);
-        });
-
-    }
-  }
-
+var Client = function(config) {
+  this.config = config;
+  this.oauth_secret = config.oauth_secret;
+  this.OAuth = new OAuth('unused','unused',config.oauth_key,config.oauth_secret,'1.0','unused','HMAC-SHA1');
+}
+Client.prototype.get = function(url_suffix, player_uid, callback) {
+  var client = this;
+  client.OAuth.get(client.config.url_prefix + url_suffix, player_uid, client.oauth_secret, callback);
 }
 
-module.exports = Gimmie;
+var ApiProxy = function(config) {
+  this.cookie_key = config.cookie_key;
+  this.client = new Client(config);
+  this.config = config;
+}
+ApiProxy.prototype.endpoint_suffix = function(request) {
+  return request.url.split('gimmieapi=').pop();
+}
+ApiProxy.prototype.proxy = function(request, response) {
+  var proxy = this;
+  var cookies = new Cookies(request, response);
+  var player_uid = (cookies.get(proxy.cookie_key) ? cookies.get(proxy.cookie_key) : null);
+  var url_suffix = proxy.endpoint_suffix(request);
+  proxy.client.get(url_suffix, player_uid, function (error, data) {
+    response.writeHead(200, {
+      'Content-Type': 'application/json'
+    });
+    response.end(data);
+  });
+}
+
+module.exports = {
+  ApiProxy: ApiProxy,
+  Client: Client
+};
+
+if (process.argv[1] == __filename) {
+  (function() {
+    var proxy = new ApiProxy({
+      'cookie_key':   process.env['COOKIE_KEY'],
+      'oauth_key':    process.env['OAUTH_KEY'],
+      'oauth_secret': process.env['OAUTH_SECRET'],
+      'url_prefix':   process.env['URL_PREFIX']
+    });
+    require('http').createServer(function (req, res) {
+      proxy.proxy(req, res);
+    }).listen(process.argv[2] || 8000);
+  })();
+}
