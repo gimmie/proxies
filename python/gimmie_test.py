@@ -3,7 +3,7 @@ import gimmie
 import urllib2
 import unittest
 
-class TestSequenceFunctions(unittest.TestCase):
+class TestGimmie(unittest.TestCase):
   # setups
   def new_ApiProxy(self):
     proxy = gimmie.ApiProxy(oauth_key=os.environ['OAUTH_KEY'], oauth_secret=os.environ['OAUTH_SECRET'], url_prefix=os.environ['URL_PREFIX'], cookie_key=os.environ['COOKIE_KEY'])
