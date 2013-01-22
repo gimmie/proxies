@@ -6,7 +6,7 @@ import unittest
 class TestSequenceFunctions(unittest.TestCase):
   # setups
   def new_ApiProxy(self):
-    proxy = gimmie.ApiProxy(oauth_key=os.environ['OAUTH_KEY'], oauth_secret=os.environ['OAUTH_SECRET'], cookie_key=os.environ['COOKIE_KEY'], url_prefix=os.environ['URL_PREFIX'])
+    proxy = gimmie.ApiProxy(oauth_key=os.environ['OAUTH_KEY'], oauth_secret=os.environ['OAUTH_SECRET'], url_prefix=os.environ['URL_PREFIX'], cookie_key=os.environ['COOKIE_KEY'])
     return proxy
   def http_200_ok(self, content = None):
     res = lambda:0

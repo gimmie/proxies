@@ -24,7 +24,7 @@ def get_player_uid(environ, cookie_key):
   return ''
 
 class ApiProxy:
-  def __init__(self, oauth_key, oauth_secret, cookie_key, url_prefix):
+  def __init__(self, oauth_key, oauth_secret, url_prefix, cookie_key):
     self.cookie_key = cookie_key
     self.client = Client(oauth_key, oauth_secret, url_prefix)
 
@@ -65,7 +65,7 @@ if __name__ == "__main__":
   import os
   import sys
   from wsgiref.simple_server import make_server
-  proxy = ApiProxy(oauth_key=os.environ['OAUTH_KEY'], oauth_secret=os.environ['OAUTH_SECRET'], cookie_key=os.environ['COOKIE_KEY'], url_prefix=os.environ['URL_PREFIX'])
+  proxy = ApiProxy(oauth_key=os.environ['OAUTH_KEY'], oauth_secret=os.environ['OAUTH_SECRET'], url_prefix=os.environ['URL_PREFIX'], cookie_key=os.environ['COOKIE_KEY'])
   port = len(sys.argv) > 1 and int(sys.argv[1]) or 8000
   httpd = make_server('', port, proxy)
   print "Proxying Gimmie API on port %d..." % port
