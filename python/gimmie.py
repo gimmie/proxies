@@ -14,7 +14,7 @@ import urllib2
 import oauth2
 import Cookie
 
-def player_uid(environ, cookie_key):
+def get_player_uid(environ, cookie_key):
   if environ.has_key('HTTP_COOKIE'):
     thiscookie = Cookie.SimpleCookie()
     thiscookie.load(environ['HTTP_COOKIE'])
@@ -24,16 +24,27 @@ def player_uid(environ, cookie_key):
 
 class ApiProxy:
   def __init__(self, oauth_key, oauth_secret, cookie_key, url_prefix):
-    self.oauth_key = oauth_key
-    self.oauth_secret = oauth_secret
-    self.access_token_secret = oauth_secret
     self.cookie_key = cookie_key
-    self.url_prefix = url_prefix
+    self.client = Client(oauth_key, oauth_secret, url_prefix)
 
   def __call__(self, environ, start_response):
     url_suffix = wsgiref.util.request_uri(environ).split("gimmieapi=").pop()
+    player_uid = get_player_uid(environ, self.cookie_key)
+    status, headers, body = self.client.get(url_suffix, player_uid)
+    start_response(status, headers)
+    return body
+
+class Client:
+  def __init__(self, oauth_key, oauth_secret, url_prefix, player_uid = None):
+    self.oauth_key = oauth_key
+    self.oauth_secret = oauth_secret
+    self.access_token_secret = oauth_secret
+    self.url_prefix = url_prefix
+    self.player_uid = player_uid
+
+  def get(self, url_suffix, player_uid = None):
     consumer = oauth2.Consumer(key=self.oauth_key, secret=self.oauth_secret)
-    token = oauth2.Token(key=player_uid(environ, self.cookie_key), secret=self.access_token_secret)
+    token = oauth2.Token(key=(player_uid or self.player_uid or ''), secret=self.access_token_secret)
     req = oauth2.Request.from_consumer_and_token(consumer, token=token, http_method="GET", http_url=(self.url_prefix + url_suffix))
     req.sign_request(oauth2.SignatureMethod_HMAC_SHA1(), consumer, token)
     try:
@@ -41,11 +52,9 @@ class ApiProxy:
       tuples = (tuple(pair.split(': ', 1)) for pair in res.info().headers)
       headers = list((key,value.rstrip()) for (key,value) in tuples if not wsgiref.util.is_hop_by_hop(key))
       status = "%d %s" % (res.code, res.msg)
-      start_response(status, headers)
-      return res
+      return [status, headers, res]
     except urllib2.HTTPError, e:
-      start_response("%d %s" % (e.code, e.msg), [])
-      return [e.msg]
+      return ["%d %s" % (e.code, e.msg), [], e.msg]
 
 if __name__ == "__main__":
   import os
