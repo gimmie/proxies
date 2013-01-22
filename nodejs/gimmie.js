@@ -60,10 +60,8 @@ if (process.argv[1] == __filename) {
       'oauth_secret': process.env['OAUTH_SECRET'],
       'url_prefix':   process.env['URL_PREFIX']
     });
-    var port = process.argv[2] || 8000;
-    require('http').createServer(function (req, res) {
-      proxy.proxy(req, res);
-    }).listen(port);
+    var port = process.env.npm_package_config_port || process.argv[2] || 8000;
+    require('http').createServer(proxy.proxy.bind(proxy)).listen(port);
     console.log("Proxying Gimmie API on port", port);
   })();
 }

@@ -8,6 +8,13 @@
   "devDependencies": {
     "jasmine-node": "1.0.28"
   },
+  "scripts": {
+    "start": "node gimmie.js",
+    "test": "jasmine-node spec"
+  },
+  "config": {
+    "port": 8000
+  },
   "main": "./gimmie",
   "engines": {
     "node": ">= 0.8"
