@@ -26,7 +26,7 @@ However, most likely you are already using some web frameworks and you'd like gi
 In this case, you'd use `gimmie-node` like a library and instantiate a ``gimmie.ApiProxy`` object
 
 	var gimmie = require('gimmie-node');
-	var proxy = new ApiProxy({
+	var proxy = new gimmie.ApiProxy({
 		'cookie_key':   process.env['COOKIE_KEY'],
 		'oauth_key':    process.env['OAUTH_KEY'],
 		'oauth_secret': process.env['OAUTH_SECRET'],
@@ -39,7 +39,8 @@ NOTE: the code above presumes your OAuth credentials and other config is stored 
 
 ### Express.JS
 
-	var app = express.createServer();
+	var express = require("express");
+	var app = express();
 	app.get('/gimmie/api', proxy.proxy.bind(proxy));
 	app.listen(8080);
 
@@ -47,11 +48,13 @@ Note that the actual path mounted does not matter, `gimmie.ApiProxy` can be moun
 
 ### Connect
 
+	var connect = require('connect');
 	connect().use(proxy.proxy.bind(proxy)).listen(8080);
 
 ### http.Server
 
-	require('http').createServer(proxy.proxy.bind(proxy)).listen(8080);
+	var http = require('http');
+	http.createServer(proxy.proxy.bind(proxy)).listen(8080);
 
 ## What's this proxy for?
 
