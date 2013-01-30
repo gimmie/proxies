@@ -35,6 +35,19 @@ class ApiProxy:
     start_response(status, headers)
     return body
 
+class DjangoProxy:
+  def __init__(self, oauth_key, oauth_secret, url_prefix, cookie_key, django):
+    self.cookie_key = cookie_key
+    self.client = Client(oauth_key, oauth_secret, url_prefix)
+    self.django = django
+
+  def __call__(self, request):
+    url_suffix = request.get_full_path().split("gimmieapi=").pop()
+    player_uid = request.COOKIES.get(self.cookie_key)
+    status, headers, body = self.client.get(url_suffix, player_uid)
+    content_type_value = list(value for (key,value) in headers if key == "Content-Type")
+    return self.django.http.HttpResponse(body, content_type=content_type_value.pop() or 'application/json; charset=utf-8')
+
 class Client:
   def __init__(self, oauth_key, oauth_secret, url_prefix, player_uid = None):
     self.oauth_key = oauth_key
