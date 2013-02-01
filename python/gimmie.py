@@ -12,21 +12,23 @@
 import wsgiref.util
 import urllib2
 import oauth2
-import json
 import Cookie
+import json
+import os
 
 def get_player_uid(environ, cookie_key):
   if environ.has_key('HTTP_COOKIE'):
     thiscookie = Cookie.SimpleCookie()
-    thiscookie.load(environ['HTTP_COOKIE'])
+    thiscookie.load(environ.get('HTTP_COOKIE'))
     if thiscookie.has_key(cookie_key):
       return thiscookie[cookie_key].value
   return ''
 
 class ApiProxy:
-  def __init__(self, oauth_key, oauth_secret, url_prefix, cookie_key):
+  def __init__(self, app = None, oauth_key=os.environ.get('OAUTH_KEY'), oauth_secret=os.environ.get('OAUTH_SECRET'), url_prefix=os.environ.get('URL_PREFIX'), cookie_key=os.environ.get('COOKIE_KEY')):
+    self.app = app
     self.cookie_key = cookie_key
-    self.client = Client(oauth_key, oauth_secret, url_prefix)
+    self.client = Client(oauth_key=oauth_key, oauth_secret=oauth_secret, url_prefix=url_prefix)
 
   def __call__(self, environ, start_response):
     url_suffix = wsgiref.util.request_uri(environ).split("gimmieapi=").pop()
@@ -36,9 +38,9 @@ class ApiProxy:
     return body
 
 class DjangoProxy:
-  def __init__(self, oauth_key, oauth_secret, url_prefix, cookie_key, django):
+  def __init__(self, django, oauth_key=os.environ.get('OAUTH_KEY'), oauth_secret=os.environ.get('OAUTH_SECRET'), url_prefix=os.environ.get('URL_PREFIX'), cookie_key=os.environ.get('COOKIE_KEY')):
     self.cookie_key = cookie_key
-    self.client = Client(oauth_key, oauth_secret, url_prefix)
+    self.client = Client(oauth_key=oauth_key, oauth_secret=oauth_secret, url_prefix=url_prefix)
     self.django = django
 
   def __call__(self, request):
@@ -49,7 +51,7 @@ class DjangoProxy:
     return self.django.http.HttpResponse(body, content_type=content_type_value.pop() or 'application/json; charset=utf-8')
 
 class Client:
-  def __init__(self, oauth_key, oauth_secret, url_prefix, player_uid = None):
+  def __init__(self, oauth_key=os.environ.get('OAUTH_KEY'), oauth_secret=os.environ.get('OAUTH_SECRET'), url_prefix=os.environ.get('URL_PREFIX'), player_uid = None):
     self.oauth_key = oauth_key
     self.oauth_secret = oauth_secret
     self.access_token_secret = oauth_secret
@@ -75,10 +77,9 @@ class Client:
     return json.load(body)
 
 if __name__ == "__main__":
-  import os
   import sys
   from wsgiref.simple_server import make_server
-  proxy = ApiProxy(oauth_key=os.environ['OAUTH_KEY'], oauth_secret=os.environ['OAUTH_SECRET'], url_prefix=os.environ['URL_PREFIX'], cookie_key=os.environ['COOKIE_KEY'])
+  proxy = ApiProxy(app = None)
   port = len(sys.argv) > 1 and int(sys.argv[1]) or 8000
   httpd = make_server('', port, proxy)
   print "Proxying Gimmie API on port %d..." % port

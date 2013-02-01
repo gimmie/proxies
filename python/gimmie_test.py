@@ -1,13 +1,11 @@
-import os
-import gimmie
-import urllib2
 import unittest
+import urllib2
+import gimmie
+import os
+import random
 
 class TestGimmie(unittest.TestCase):
   # setups
-  def new_ApiProxy(self):
-    proxy = gimmie.ApiProxy(oauth_key=os.environ['OAUTH_KEY'], oauth_secret=os.environ['OAUTH_SECRET'], url_prefix=os.environ['URL_PREFIX'], cookie_key=os.environ['COOKIE_KEY'])
-    return proxy
   def http_200_ok(self, content = None):
     res = lambda:0
     res.info = lambda:res
@@ -17,7 +15,7 @@ class TestGimmie(unittest.TestCase):
     res.read = lambda: content
     return res
   def new_Client(self):
-    client = self.new_ApiProxy().client
+    client = gimmie.ApiProxy().client
     return client
 
   # tests
@@ -25,16 +23,28 @@ class TestGimmie(unittest.TestCase):
     original_urlopen = urllib2.urlopen
     try:
       def should_launch_correct_url(url):
-        self.assertTrue(url.startswith(os.environ['URL_PREFIX'] + '/1/redeem.json?'))
+        self.assertTrue(url.startswith(os.environ.get('URL_PREFIX') + '/1/redeem.json?'))
         self.assertTrue(url.endswith('&email=1&reward_id=1'))
         return self.http_200_ok()
       urllib2.urlopen = should_launch_correct_url
       start_response = lambda status, headers:0
       environ = { 'wsgi.url_scheme': 'http', 'HTTP_HOST': 'test.host', 'PATH_INFO': '/some/where', 'QUERY_STRING': 'gimmieapi=/1/redeem.json?reward_id=1&email=1' }
-      proxy = self.new_ApiProxy()
+      proxy = gimmie.ApiProxy()
       proxy.__call__(environ = environ, start_response = start_response)
     finally:
       urllib2.urlopen = original_urlopen
+
+  def test_ApiProxy_should_use_first_argument_as_wsgiapp(self):
+    x = random.random()
+    proxy = gimmie.ApiProxy(x)
+    self.assertEqual(proxy.app, x)
+
+  def test_ApiProxy_use_settings_provided_but_fallback_to_environment_variables(self):
+    x = random.random()
+    proxy = gimmie.ApiProxy(url_prefix=x)
+    self.assertEqual(proxy.client.url_prefix, x)
+    self.assertNotEqual(os.environ.get('OAUTH_SECRET'), None)
+    self.assertEqual(proxy.client.oauth_secret, os.environ.get('OAUTH_SECRET'))
 
   def test_Client_getJSON_should_return_parsed_json(self):
     original_urlopen = urllib2.urlopen
@@ -48,3 +58,17 @@ class TestGimmie(unittest.TestCase):
     finally:
       urllib2.urlopen = original_urlopen
 
+  def test_Client_should_use_settings_provided_but_fallback_to_environment_variables(self):
+    x = random.random()
+    client = gimmie.Client(url_prefix=x)
+    self.assertEqual(client.url_prefix, x)
+    self.assertNotEqual(os.environ.get('OAUTH_SECRET'), None)
+    self.assertEqual(client.oauth_secret, os.environ.get('OAUTH_SECRET'))
+
+  def test_DjangoProxy_should_use_settings_provided_but_fallback_to_environment_variables(self):
+    x = random.random()
+    proxy = gimmie.DjangoProxy(x, url_prefix=x)
+    self.assertEqual(proxy.django, x)
+    self.assertEqual(proxy.client.url_prefix, x)
+    self.assertNotEqual(os.environ.get('OAUTH_SECRET'), None)
+    self.assertEqual(proxy.client.oauth_secret, os.environ.get('OAUTH_SECRET'))
