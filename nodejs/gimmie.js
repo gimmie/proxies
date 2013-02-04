@@ -55,10 +55,10 @@ module.exports = {
 if (process.argv[1] == __filename) {
   (function() {
     var proxy = new ApiProxy({
-      'cookie_key':   process.env['COOKIE_KEY'],
-      'oauth_key':    process.env['OAUTH_KEY'],
-      'oauth_secret': process.env['OAUTH_SECRET'],
-      'url_prefix':   process.env['URL_PREFIX']
+      'cookie_key':   process.env['GIMMIE_COOKIE_KEY'],
+      'oauth_key':    process.env['GIMMIE_OAUTH_KEY'],
+      'oauth_secret': process.env['GIMMIE_OAUTH_SECRET'],
+      'url_prefix':   process.env['GIMMIE_URL_PREFIX']
     });
     var port = process.env.npm_package_config_port || process.argv[2] || 8000;
     require('http').createServer(proxy.proxy.bind(proxy)).listen(port);

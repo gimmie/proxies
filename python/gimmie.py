@@ -25,7 +25,7 @@ def get_player_uid(environ, cookie_key):
   return ''
 
 class ApiProxy:
-  def __init__(self, app = None, route = os.environ.get('GIMMIE_ROUTE'), oauth_key=os.environ.get('OAUTH_KEY'), oauth_secret=os.environ.get('OAUTH_SECRET'), url_prefix=os.environ.get('URL_PREFIX'), cookie_key=os.environ.get('COOKIE_KEY')):
+  def __init__(self, app = None, route = os.environ.get('GIMMIE_ROUTE'), oauth_key=os.environ.get('GIMMIE_OAUTH_KEY'), oauth_secret=os.environ.get('GIMMIE_OAUTH_SECRET'), url_prefix=os.environ.get('GIMMIE_URL_PREFIX'), cookie_key=os.environ.get('GIMMIE_COOKIE_KEY')):
     self.app = app
     self.cookie_key = cookie_key
     self.route = route
@@ -53,7 +53,7 @@ class ApiProxy:
     return ("/" + paths.pop(1)) == self.route
 
 class DjangoProxy:
-  def __init__(self, django, oauth_key=os.environ.get('OAUTH_KEY'), oauth_secret=os.environ.get('OAUTH_SECRET'), url_prefix=os.environ.get('URL_PREFIX'), cookie_key=os.environ.get('COOKIE_KEY')):
+  def __init__(self, django, oauth_key=os.environ.get('GIMMIE_OAUTH_KEY'), oauth_secret=os.environ.get('GIMMIE_OAUTH_SECRET'), url_prefix=os.environ.get('GIMMIE_URL_PREFIX'), cookie_key=os.environ.get('GIMMIE_COOKIE_KEY')):
     self.cookie_key = cookie_key
     self.client = Client(oauth_key=oauth_key, oauth_secret=oauth_secret, url_prefix=url_prefix)
     self.django = django
@@ -66,7 +66,7 @@ class DjangoProxy:
     return self.django.http.HttpResponse(body, content_type=content_type_value.pop() or 'application/json; charset=utf-8')
 
 class Client:
-  def __init__(self, oauth_key=os.environ.get('OAUTH_KEY'), oauth_secret=os.environ.get('OAUTH_SECRET'), url_prefix=os.environ.get('URL_PREFIX'), player_uid = None):
+  def __init__(self, oauth_key=os.environ.get('GIMMIE_OAUTH_KEY'), oauth_secret=os.environ.get('GIMMIE_OAUTH_SECRET'), url_prefix=os.environ.get('GIMMIE_URL_PREFIX'), player_uid = None):
     self.oauth_key = oauth_key
     self.oauth_secret = oauth_secret
     self.access_token_secret = oauth_secret

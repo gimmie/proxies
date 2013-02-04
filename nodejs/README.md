@@ -27,9 +27,9 @@ In this case, you'd use `gimmie-node` like a library and instantiate a ``gimmie.
 
 	var gimmie = require('gimmie-node');
 	var proxy = new gimmie.ApiProxy({
-		'cookie_key':   process.env['COOKIE_KEY'],
-		'oauth_key':    process.env['OAUTH_KEY'],
-		'oauth_secret': process.env['OAUTH_SECRET'],
+		'cookie_key':   process.env['GIMMIE_COOKIE_KEY'],
+		'oauth_key':    process.env['GIMMIE_OAUTH_KEY'],
+		'oauth_secret': process.env['GIMMIE_OAUTH_SECRET'],
 		'url_prefix':  'https://api.gimmieworld.com'
 	});
 

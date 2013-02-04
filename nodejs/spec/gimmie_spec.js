@@ -1,9 +1,9 @@
 var gimmie = require('../gimmie.js');
 var proxy = new gimmie.ApiProxy({
-  'cookie_key': process.env['COOKIE_KEY'],
-  'oauth_key': process.env['OAUTH_KEY'],
-  'oauth_secret': process.env['OAUTH_SECRET'],
-  'url_prefix': process.env['URL_PREFIX']
+  'cookie_key': process.env['GIMMIE_COOKIE_KEY'],
+  'oauth_key': process.env['GIMMIE_OAUTH_KEY'],
+  'oauth_secret': process.env['GIMMIE_OAUTH_SECRET'],
+  'url_prefix': process.env['GIMMIE_URL_PREFIX']
 });
 var client = proxy.client;
 

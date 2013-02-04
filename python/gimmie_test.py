@@ -23,7 +23,7 @@ class TestGimmie(unittest.TestCase):
     original_urlopen = urllib2.urlopen
     try:
       def should_launch_correct_url(url):
-        self.assertTrue(url.startswith(os.environ.get('URL_PREFIX') + '/1/redeem.json?'))
+        self.assertTrue(url.startswith(os.environ.get('GIMMIE_URL_PREFIX') + '/1/redeem.json?'))
         self.assertTrue(url.endswith('&email=1&reward_id=1'))
         return self.http_200_ok()
       urllib2.urlopen = should_launch_correct_url
@@ -43,8 +43,8 @@ class TestGimmie(unittest.TestCase):
     x = random.random()
     proxy = gimmie.ApiProxy(url_prefix=x)
     self.assertEqual(proxy.client.url_prefix, x)
-    self.assertNotEqual(os.environ.get('OAUTH_SECRET'), None)
-    self.assertEqual(proxy.client.oauth_secret, os.environ.get('OAUTH_SECRET'))
+    self.assertNotEqual(os.environ.get('GIMMIE_OAUTH_SECRET'), None)
+    self.assertEqual(proxy.client.oauth_secret, os.environ.get('GIMMIE_OAUTH_SECRET'))
 
   def test_Client_getJSON_should_return_parsed_json(self):
     original_urlopen = urllib2.urlopen
@@ -62,16 +62,16 @@ class TestGimmie(unittest.TestCase):
     x = random.random()
     client = gimmie.Client(url_prefix=x)
     self.assertEqual(client.url_prefix, x)
-    self.assertNotEqual(os.environ.get('OAUTH_SECRET'), None)
-    self.assertEqual(client.oauth_secret, os.environ.get('OAUTH_SECRET'))
+    self.assertNotEqual(os.environ.get('GIMMIE_OAUTH_SECRET'), None)
+    self.assertEqual(client.oauth_secret, os.environ.get('GIMMIE_OAUTH_SECRET'))
 
   def test_DjangoProxy_should_use_settings_provided_but_fallback_to_environment_variables(self):
     x = random.random()
     proxy = gimmie.DjangoProxy(x, url_prefix=x)
     self.assertEqual(proxy.django, x)
     self.assertEqual(proxy.client.url_prefix, x)
-    self.assertNotEqual(os.environ.get('OAUTH_SECRET'), None)
-    self.assertEqual(proxy.client.oauth_secret, os.environ.get('OAUTH_SECRET'))
+    self.assertNotEqual(os.environ.get('GIMMIE_OAUTH_SECRET'), None)
+    self.assertEqual(proxy.client.oauth_secret, os.environ.get('GIMMIE_OAUTH_SECRET'))
 
   def test_ApiProxy_routeMatches_match_everything_by_default(self):
     proxy = gimmie.ApiProxy()
