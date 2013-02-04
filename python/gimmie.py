@@ -25,17 +25,32 @@ def get_player_uid(environ, cookie_key):
   return ''
 
 class ApiProxy:
-  def __init__(self, app = None, oauth_key=os.environ.get('OAUTH_KEY'), oauth_secret=os.environ.get('OAUTH_SECRET'), url_prefix=os.environ.get('URL_PREFIX'), cookie_key=os.environ.get('COOKIE_KEY')):
+  def __init__(self, app = None, route = os.environ.get('GIMMIE_ROUTE'), oauth_key=os.environ.get('OAUTH_KEY'), oauth_secret=os.environ.get('OAUTH_SECRET'), url_prefix=os.environ.get('URL_PREFIX'), cookie_key=os.environ.get('COOKIE_KEY')):
     self.app = app
     self.cookie_key = cookie_key
+    self.route = route
     self.client = Client(oauth_key=oauth_key, oauth_secret=oauth_secret, url_prefix=url_prefix)
 
   def __call__(self, environ, start_response):
-    url_suffix = wsgiref.util.request_uri(environ).split("gimmieapi=").pop()
-    player_uid = get_player_uid(environ, self.cookie_key)
-    status, headers, body = self.client.get(url_suffix, player_uid)
-    start_response(status, headers)
-    return body
+    if self.routeMatches(environ.get('PATH_INFO')):
+      url_suffix = wsgiref.util.request_uri(environ).split("gimmieapi=").pop()
+      player_uid = get_player_uid(environ, self.cookie_key)
+      status, headers, body = self.client.get(url_suffix, player_uid)
+      start_response(status, headers)
+      return body
+    elif self.app:
+      self.app(environ, start_response)
+    else:
+      start_response("404 Not found", [])
+      return ["Not found"]
+
+  def routeMatches(self, target):
+    if self.route == None:
+      return True
+    if target == None:
+      return False
+    paths = target.split("/")
+    return ("/" + paths.pop(1)) == self.route
 
 class DjangoProxy:
   def __init__(self, django, oauth_key=os.environ.get('OAUTH_KEY'), oauth_secret=os.environ.get('OAUTH_SECRET'), url_prefix=os.environ.get('URL_PREFIX'), cookie_key=os.environ.get('COOKIE_KEY')):

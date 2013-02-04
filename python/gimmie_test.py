@@ -72,3 +72,19 @@ class TestGimmie(unittest.TestCase):
     self.assertEqual(proxy.client.url_prefix, x)
     self.assertNotEqual(os.environ.get('OAUTH_SECRET'), None)
     self.assertEqual(proxy.client.oauth_secret, os.environ.get('OAUTH_SECRET'))
+
+  def test_ApiProxy_routeMatches_match_everything_by_default(self):
+    proxy = gimmie.ApiProxy()
+    self.assertTrue(proxy.routeMatches("/def"))
+    self.assertTrue(proxy.routeMatches("/"))
+    self.assertTrue(proxy.routeMatches(""))
+    self.assertTrue(proxy.routeMatches(None))
+
+  def test_ApiProxy_route_returns_true_if_match(self):
+    proxy = gimmie.ApiProxy(route="/def")
+    self.assertTrue(proxy.routeMatches("/def"))
+    self.assertFalse(proxy.routeMatches(None))
+
+  def test_ApiProxy_route_returns_false_if_not_match(self):
+    proxy = gimmie.ApiProxy(route="/abc")
+    self.assertFalse(proxy.routeMatches("/abcd"))
