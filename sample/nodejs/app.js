@@ -7,14 +7,13 @@ var fs = require('fs'),
     url = require('url');
 
 var Cookies = require('cookies');
+var ApiProxy = gimmie.ApiProxy;
 
-gimmie.configure({
-  'COOKIE'    : '_gm_user',
-  'OAUTH_KEY' : 'd883ceb9d02d6b73eae54464075f',
-  'OAUTH_SEC' : '0212f8ad3bd4c900fe3784dae456',
-
-  // This is special configuration, using in test machine only
-  '_endpoint' : 'http://api.lvh.me:3000'
+var api = new ApiProxy({
+  'cookie_key':   '_gm_user',
+  'oauth_key':    '64d8c73308bcfd87ab77bedfc86b',
+  'oauth_secret': '537da4b267242c2ff27974bf2597',
+  'url_prefix':   'https://api.gimmieworld.com/1/'
 });
 
 var server = http.createServer(
@@ -26,8 +25,8 @@ var server = http.createServer(
       target += 'index.html';
     }
 
-    if (target === '/api' && gimmie.proxy) {
-      gimmie.proxy(req, res);
+    if (target === '/api') {
+      api.proxy(req, res);
       return;
     }
     else if (/^\/system/.test(target)) {
