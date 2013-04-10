@@ -1,6 +1,6 @@
 # Sample Node.js project and for internal test with widget.
 
-This folder contains sample node.js project which sample configuration for internal test run.
+This folder contains sample node.js project for internal test run or show to client.
 
 To use this project, change follow configuration to your server.
 
