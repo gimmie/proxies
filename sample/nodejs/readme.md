@@ -21,3 +21,4 @@ To use this project, change follow configuration to your server.
   - Widget filters are in controllers/api_controller.rb (class ApiController, before filter)
   - Dev src is in views/api/widget_dev.html.haml
   - Dev spec can access via `http://api.lvh.me:3000/1/widget_dev.html`
+  - The default value in configuration page live in locales folder `config/locales/footer_widget.en.yml`

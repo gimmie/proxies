@@ -33,7 +33,7 @@ var server = http.createServer(
     }
     else if (/^\/system/.test(target)) {
       try {
-        https.get(endpoint + req.url, function (proxy) {
+        http.get(endpoint + req.url, function (proxy) {
           res.writeHead(proxy.statusCode, proxy.headers);
             proxy.pipe(res);
           });

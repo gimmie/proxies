@@ -21,15 +21,16 @@
 </head>
 <body>
 
-<div class="gimmie-intext-sample" data-gimmie-event-id='1'>Share me</div>
-<div class="gimmie-intext-sample" data-gimmie-event-id='2'>Get the candy</div>
-<div class="gimmie-intext-sample" data-gimmie-event-id='1'>Share me again</div>
-<div class="gimmie-intext-sample" data-gimmie-event-id='2'>Get the candy again</div>
-
-<div class="gimmie-intext-sample" id="sample" data-gimmie-event-id='2'>Get the candy again</div>
-
-<div class="gimmie-instance-action" data-gimmie-event-id="3">
-  Special Thing
+<div class="gimmie-control">
+  <h2>Events</h2>
+  <ul>
+    <li>
+      <a href="#" data-gimmie-event-id="1">Trigger 500 points event</a>
+    </li>
+    <li>
+      <a href="#" data-gimmie-event-id="2">Trigger 1000 points event</a>
+    </li>
+  </ul>
 </div>
 
 <div id="gimmie-root"></div>
@@ -58,9 +59,10 @@
     "nouser_reward_title_handler" : function () {
       console.log ('Signing in');
     },
-    "show_reward_when_logout"     : false,
+    "show_reward_when_logout"     : true,
     "url"                         : "http://google.com",
     "hide_power"                  : false,
+    "shuffle_reward"              : true,
 
     "share": {
       "facebook": "share",
@@ -69,9 +71,8 @@
     },
 
     "onload" : function () {
-      /*
-      GimmieWidget.triggerOutput({ "response": {"success":true,"user":{"user_id":"test","awarded_points":51883,"redeemed_points":23100,"current_level":1,"current_level_points":0,"next_level_points":null,"points_to_next_level":null},"actions":[{"action_type":"Award Points","message":"Thank you for sharing us","points":4987,"limit":null,"success":true}],"categories":[{"name":"Featured","reward_exp_points_range":{"min":0,"max":0},"reward_points_range":{"min":3300,"max":3300},"reward_price_range":{"min":"3.3","max":"3.3"},"rewards":[{"id":"1","name":"Free small french fries side","short_name":"Free french fries","category_name":"Sides","store_name":"McDonalds","total_quantity":-1,"claimed_quantity":0,"description":"Free french fries in the morning.","fine_print":"Wake up and go out to nearest branch between 3 AM to 4 AM and show this coupon on your phone to get free french fries.","price":"3.3","points":3300,"experience_points":0,"limit_per_player":-1,"discount":"Free","start_date":"2013-01-07","end_date":"2014-02-07","image_url":"/system/reward_langs/images/000/000/001/thumb/McDonald-s-French-Fries-cynthia-selahblue-cynti19-23963155-443-506.png?1357551090"}]}]}});
-      */
+
+      GimmieWidget.triggerOutput({ "response": {"success":true,"user":{"user_id":"test","awarded_points":51883,"redeemed_points":23100,"current_level":1,"current_level_points":0,"next_level_points":null,"points_to_next_level":null},"actions":[{"action_type":"Award Points","message":"Thank you for sharing us","points":4987,"limit":null,"success":true}],"categories":[{"name":"Featured","reward_exp_points_range":{"min":0,"max":0},"reward_points_range":{"min":3300,"max":3300},"reward_price_range":{"min":"3.3","max":"3.3"},"rewards":[{"id":"1","name":"Free small french fries side","short_name":"Free french fries","category_name":"Sides","store_name":"McDonalds","total_quantity":-1,"claimed_quantity":0,"description":"Free french fries in the morning.","fine_print":"Wake up and go out to nearest branch between 3 AM to 4 AM and show this coupon on your phone to get free french fries.","price":"3.3","points":3300,"experience_points":0,"limit_per_player":-1,"discount":"Free","start_date":"2013-01-07","end_date":"2014-02-07","image_url":"/system/reward_langs/images/000/000/001/thumb/bigmac.jpg?1365563561"}]}]}});
     }
 
   };
