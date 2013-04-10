@@ -9,11 +9,13 @@ var fs = require('fs'),
 var Cookies = require('cookies');
 var ApiProxy = gimmie.ApiProxy;
 
+var endpoint = 'http://api.gm.llun.in.th:3000';
+
 var api = new ApiProxy({
   'cookie_key':   '_gm_user',
-  'oauth_key':    '64d8c73308bcfd87ab77bedfc86b',
-  'oauth_secret': '537da4b267242c2ff27974bf2597',
-  'url_prefix':   'https://api.gimmieworld.com/1/'
+  'oauth_key':    '734b7a763b0346b90533543abe84',
+  'oauth_secret': '9855c257de10f5266d218e2f45b9',
+  'url_prefix':   endpoint
 });
 
 var server = http.createServer(
@@ -25,15 +27,20 @@ var server = http.createServer(
       target += 'index.html';
     }
 
-    if (target === '/api') {
+    if (target === '/gimmie') {
       api.proxy(req, res);
       return;
     }
     else if (/^\/system/.test(target)) {
-      http.get(gimmie._endpoint + req.url, function (proxy) {
-        res.writeHead(proxy.statusCode, proxy.headers);
-        proxy.pipe(res);
-      });
+      try {
+        https.get(endpoint + req.url, function (proxy) {
+          res.writeHead(proxy.statusCode, proxy.headers);
+            proxy.pipe(res);
+          });
+      } catch (e) {
+        res.writeHead(404, {});
+        res.end();
+      }
       return;
     }
 
@@ -65,3 +72,9 @@ var server = http.createServer(
 
 server.listen(8080, '0.0.0.0');
 console.log ('server listen on 8080');
+
+process.on('uncaughtException', function (err) {
+  console.log (err);
+  console.log (err.stack);
+  process.exit(-1);
+});

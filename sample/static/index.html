@@ -39,7 +39,7 @@
 <script src="jquery-1.8.3.min.js" type="text/javascript"></script>
 <script type="text/javascript">
   var _gimmie = {
-    "api"                         : "//lvh.me:8000/gimmie?gimmieapi=",
+    "api"                         : "//api.gm.llun.in.th:8080/gimmie?gimmieapi=",
 
     "name"                        : "Sample",
     "notify"                      : "Welcome to Sample Site",
@@ -69,7 +69,9 @@
     },
 
     "onload" : function () {
+      /*
       GimmieWidget.triggerOutput({ "response": {"success":true,"user":{"user_id":"test","awarded_points":51883,"redeemed_points":23100,"current_level":1,"current_level_points":0,"next_level_points":null,"points_to_next_level":null},"actions":[{"action_type":"Award Points","message":"Thank you for sharing us","points":4987,"limit":null,"success":true}],"categories":[{"name":"Featured","reward_exp_points_range":{"min":0,"max":0},"reward_points_range":{"min":3300,"max":3300},"reward_price_range":{"min":"3.3","max":"3.3"},"rewards":[{"id":"1","name":"Free small french fries side","short_name":"Free french fries","category_name":"Sides","store_name":"McDonalds","total_quantity":-1,"claimed_quantity":0,"description":"Free french fries in the morning.","fine_print":"Wake up and go out to nearest branch between 3 AM to 4 AM and show this coupon on your phone to get free french fries.","price":"3.3","points":3300,"experience_points":0,"limit_per_player":-1,"discount":"Free","start_date":"2013-01-07","end_date":"2014-02-07","image_url":"/system/reward_langs/images/000/000/001/thumb/McDonald-s-French-Fries-cynthia-selahblue-cynti19-23963155-443-506.png?1357551090"}]}]}});
+      */
     }
 
   };
@@ -78,7 +80,7 @@
     var js, id = "gimmie-widget", ref = d.getElementsByTagName("script")[0];
     if (d.getElementById(id)) {return;}
     js = d.createElement("script"); js.id = id; js.async = true;
-    js.src = "http://api.lvh.me:3000/assets/gimmie-widget.nojq.js";
+    js.src = "http://api.gm.llun.in.th:3000/assets/gimmie-widget.nojq.js";
     ref.parentNode.insertBefore(js, ref);
   }(document));
 
