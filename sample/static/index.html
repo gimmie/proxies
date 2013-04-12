@@ -23,12 +23,12 @@
 
 <div class="gimmie-control">
   <h2>Events</h2>
-  <ul>
+  <ul class="events">
     <li>
-      <a href="#" data-gimmie-event-id="1">Trigger 500 points event</a>
+      <a href="#" data-gimmie-event="500_jump">Trigger 500 points event</a>
     </li>
     <li>
-      <a href="#" data-gimmie-event-id="2">Trigger 1000 points event</a>
+      <a href="#" data-gimmie-event="1000_jump">Trigger 1000 points event</a>
     </li>
   </ul>
 </div>
@@ -63,6 +63,7 @@
     "url"                         : "http://google.com",
     "hide_power"                  : false,
     "shuffle_reward"              : true,
+    "auto_notify_after_load"      : true,
 
     "share": {
       "facebook": "share",
@@ -85,22 +86,10 @@
     ref.parentNode.insertBefore(js, ref);
   }(document));
 
-  $('.gimmie-instance-action').click(function () {
-    GimmieWidget.API.triggerEvent(3, function (data) {
-      if (data.response.success) {
-        var actions = data.response.actions;
-        var target = null;
-        actions.forEach(function (action) {
-          if (action.action_type === 'Instant Reward') {
-            target = action;
-          }
-        });
-
-        if (target) {
-          GimmieWidget.instantWinLightbox(target);
-        }
-      }
-    });
+  $('.events a').click(function (item) {
+    var element = _gmjq(item.target);
+    var eventName = element.attr('data-gimmie-event');
+    GimmieWidget.API.triggerEvent(eventName);
   });
 
 </script>

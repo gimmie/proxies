@@ -1,6 +1,7 @@
 var fs = require('fs'),
     gimmie = require('gimmie-node'),
     http = require('http'),
+    https = require('https'),
     mime = require('mime'),
     path = require('path'),
     querystring = require('querystring'),
@@ -33,7 +34,11 @@ var server = http.createServer(
     }
     else if (/^\/system/.test(target)) {
       try {
-        http.get(endpoint + req.url, function (proxy) {
+        var service = http;
+        if (/^https/.test(endpoint)) {
+          service = https;
+        }
+        service.get(endpoint + req.url, function (proxy) {
           res.writeHead(proxy.statusCode, proxy.headers);
             proxy.pipe(res);
           });
