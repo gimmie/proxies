@@ -11,7 +11,7 @@ import django
 # from django.contrib import admin
 # admin.autodiscover()
 
-gimmie_proxy = gimmie.DjangoProxy(oauth_key='d883ceb9d02d6b73eae54464075f', oauth_secret='0212f8ad3bd4c900fe3784dae456', url_prefix='http://api.lvh.me:3000', cookie_key='_gm_user', django=django)
+gimmie_proxy = gimmie.DjangoProxy(oauth_key='734b7a763b0346b90533543abe84', oauth_secret='9855c257de10f5266d218e2f45b9', url_prefix='http://api.gm.llun.in.th:3000', cookie_key='_gm_user', django=django)
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'dj.views.home', name='home'),

@@ -8,4 +8,4 @@ def index(request):
 	return response
 
 def image_from_api(request):
-	return redirect('http://api.lvh.me:3000%s'%request.get_full_path())
+	return redirect('http://api.gm.llun.in.th:8080%s'%request.get_full_path())

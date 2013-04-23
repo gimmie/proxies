@@ -95,7 +95,7 @@ if __name__ == "__main__":
   import sys
   from wsgiref.simple_server import make_server
   proxy = ApiProxy(app = None)
-  port = len(sys.argv) > 1 and int(sys.argv[1]) or 8000
+  port = len(sys.argv) > 1 and int(sys.argv[1]) or 8080
   httpd = make_server('', port, proxy)
   print "Proxying Gimmie API on port %d..." % port
   httpd.serve_forever()
