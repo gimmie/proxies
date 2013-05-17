@@ -1,20 +1,22 @@
 var fs = require('fs'),
     gimmie = require('gimmie-node'),
     http = require('http'),
+    https = require('https'),
     mime = require('mime'),
     path = require('path'),
     querystring = require('querystring'),
     url = require('url');
 
 var Cookies = require('cookies');
+var ApiProxy = gimmie.ApiProxy;
 
-gimmie.configure({
-  'COOKIE'    : '_gm_user',
-  'OAUTH_KEY' : 'd883ceb9d02d6b73eae54464075f',
-  'OAUTH_SEC' : '0212f8ad3bd4c900fe3784dae456',
+var endpoint = 'http://api.gm.llun.in.th:3000';
 
-  // This is special configuration, using in test machine only
-  '_endpoint' : 'http://api.lvh.me:3000'
+var api = new ApiProxy({
+  'cookie_key':   '_gm_user',
+  'oauth_key':    '734b7a763b0346b90533543abe84',
+  'oauth_secret': '9855c257de10f5266d218e2f45b9',
+  'url_prefix':   endpoint
 });
 
 var server = http.createServer(
@@ -26,15 +28,24 @@ var server = http.createServer(
       target += 'index.html';
     }
 
-    if (target === '/api' && gimmie.proxy) {
-      gimmie.proxy(req, res);
+    if (target === '/gimmie') {
+      api.proxy(req, res);
       return;
     }
     else if (/^\/system/.test(target)) {
-      http.get(gimmie._endpoint + req.url, function (proxy) {
-        res.writeHead(proxy.statusCode, proxy.headers);
-        proxy.pipe(res);
-      });
+      try {
+        var service = http;
+        if (/^https/.test(endpoint)) {
+          service = https;
+        }
+        service.get(endpoint + req.url, function (proxy) {
+          res.writeHead(proxy.statusCode, proxy.headers);
+            proxy.pipe(res);
+          });
+      } catch (e) {
+        res.writeHead(404, {});
+        res.end();
+      }
       return;
     }
 
@@ -66,3 +77,9 @@ var server = http.createServer(
 
 server.listen(8080, '0.0.0.0');
 console.log ('server listen on 8080');
+
+process.on('uncaughtException', function (err) {
+  console.log (err);
+  console.log (err.stack);
+  process.exit(-1);
+});
