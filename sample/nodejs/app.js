@@ -10,12 +10,13 @@ var fs = require('fs'),
 var Cookies = require('cookies');
 var ApiProxy = gimmie.ApiProxy;
 
-var endpoint = 'http://api.gm.llun.in.th:3000';
+// var endpoint = 'http://api.d.llun.in.th:3000';
+var endpoint = 'http://api.gimmie.lab:3000';
 
 var api = new ApiProxy({
   'cookie_key':   '_gm_user',
-  'oauth_key':    '734b7a763b0346b90533543abe84',
-  'oauth_secret': '9855c257de10f5266d218e2f45b9',
+  'oauth_key':    '0a60299a6b0148ab76593b8e6e4e',
+  'oauth_secret': 'c42bbd91cb9ff6c818f1ef50a07a',
   'url_prefix':   endpoint
 });
 
@@ -57,6 +58,9 @@ var server = http.createServer(
       if (_query) {
         if (_query['user']) {
           cookies.set('_gm_user', _query['user']);
+        }
+        else if (_query['logout']) {
+          cookies.set('_gm_user');
         }
       }
 
