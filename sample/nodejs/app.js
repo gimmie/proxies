@@ -10,8 +10,7 @@ var fs = require('fs'),
 var Cookies = require('cookies');
 var ApiProxy = gimmie.ApiProxy;
 
-var endpoint = 'http://api.d.llun.in.th:3000';
-// var endpoint = 'http://api.gimmie.lab:3000';
+ var endpoint = 'http://api.d.gimmie.lab:3000';
 
 var api = new ApiProxy({
   'cookie_key':   '_gm_user',
