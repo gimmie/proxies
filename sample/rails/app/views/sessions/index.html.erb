@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    <!-- message only -->
+    <p><%= flash[:notice] %></p>
+
+    <% if current_user_id %>
+
+      <!-- logout button -->
+      <%= button_to "Logout #{current_user_id}", session_path('logout'), { :method => "delete" } %>
+
+    <% else %>
+
+      <%= link_to "Login", "#", :onclick => "$('#new_session_form').toggle(); return false;" %>
+      <!-- login form, hidden by default, displayed when "Please login" is clicked in widget -->
+      <%= form_for :sessions, :html => { :id => "new_session_form", :style => "display:none;" } do |f| %>
+        <%= f.text_field :userid, :placeholder => "userid", :autofocus => "autofocus" %>
+        <%= f.submit "Login" %>
+      <% end %>
+
+    <% end %>
+
+    <!-- embedded widget -->
+    <div id='gimmie-root'></div>
+    <script type="text/javascript">
+    var _gimmie = {
+      "api"                         : "<%= request.scheme %>://<%= request.host_with_port %>/gimmie_proxy?gimmieapi=",
+      "key"                         : "e52853bfdcf1d49a0368181245b7",
+      "country"                     : "SG",
+      "locale"                      : "EN",
+      "name"                        : "User",
+      "notify"                      : "Welcome to Gimmie",
+      "empty_activity_content"      : "No user activity",
+      "empty_my_reward_content"     : "No claim reward",
+      "help_content"                : "Gimmie Widget",
+      "logon_message"               : "Welcome to Gimmie",
+      "show_reward_when_logout"     : true,
+      "auto_notify_after_load"      : true,
+      "logout_message"              : "Please login",
+      "nouser_reward_title"         : "Please login",
+      "reward_anonymous_message"    : "Login or signup",
+      "reward_anonymous_button"     : "Login / Signup",
+      "url"                         : "<%= request.scheme %>://<%= request.host_with_port %>/",
+      "share"                       : {
+        "facebook": "share-facebook",
+        "twitter" : "share-twitter",
+        "gplus"   : "share-gplus"
+      },
+      "appearance"                  : {
+        "bar_color"                 : "#FFFFFF",
+        "bar_background"            : "#000000",
+        "bar_points_color"          : "#444444",
+        "bar_points_background"     : "#DDDDDD",
+        "reward_color"              : "#FFFFFF",
+        "reward_background"         : "#FF8C04",
+        "redeem_button_color"       : "#FFFFFF",
+        "redeem_button_background"  : "#FF8C04",
+        "claim_button_color"        : "#FFFFFF",
+        "claim_button_background"   : "#36875C",
+        "back_button_color"         : "#FFFFFF",
+        "back_button_background"    : "#AAAAAA",
+        "my_reward_point_color"     : "#000000",
+        "my_reward_claim_color"     : "#FFFFFF",
+        "my_reward_background"      : "#FF8C04",
+        "point_color"               : "#336666",
+        "point_background"          : "#DDDDDD",
+        "header_color"              : "#585858"
+      }
+    };
+
+    (function(d){
+      var js, id = "gimmie-widget", ref = d.getElementsByTagName("script")[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement("script"); js.id = id; js.async = true;
+      js.src = "//api.gimmieworld.com/cdn/gimmie-widget.all.js";
+      ref.parentNode.insertBefore(js, ref);
+    }(document));
+
+
+    </script>
+  </body>
+</html>

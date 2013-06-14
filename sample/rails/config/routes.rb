@@ -1,4 +1,5 @@
 WidgetWithProxy::Application.routes.draw do
+  resources :sessions
   match "/gimmie_proxy" => Gimmie::Proxy.new
 
   # The priority is based upon order of creation:
