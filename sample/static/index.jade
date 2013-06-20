@@ -1,0 +1,58 @@
+html
+  head
+    style(type='text/css')
+      .gimmie-intext-sample {
+        width: auto;
+        display: inline-block;
+      }
+
+      .gimmie-instance-action {
+        background-color: #faebd7;
+        border: 1px solid #fb8c32;
+        border-radius: 3px;
+
+        width: 100px;
+        cursor: pointer;
+
+        position: relative;
+        left: 100px;
+      }
+    meta(name='viewport',content='width=device-width, initial-scale=1 maxumum-scale=1.0;')
+    meta(http-equiv='Pragma',content='no-cache')
+    meta(http-equiv='Expires',content'-1')
+  body
+    .gimmie-control
+      h2 Events
+      ul.events
+        li: a(href='#',data-event-id='finish_level') Finish game level
+        li: a(href='#',data-event-id='share') Share Something
+
+    #gimmie-root
+
+
+    script(type='text/javascript')
+      var _gimmie = {
+        "api"                         : "//192.168.2.118:8080/gimmie?gimmieapi=",
+        "locale"                      : "en",
+
+        "key"                         : "0a60299a6b0148ab76593b8e6e4e",
+        "gimmieURL"                   : "http://api-d.llun.in.th",
+        "name"                        : "#{user}",
+
+        "_": {
+          "enable_responsive": true,
+          "no_animate": false,
+          "hide_powerby": true
+        },
+
+      };
+
+      (function(d){
+        var js, id = "gimmie-widget", ref = d.getElementsByTagName("script")[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement("script"); js.id = id; js.async = true;
+        // js.src = "http://api.gimmie.lab:3000/assets/gimmie-widget.nojq.js";
+        js.src = "http://api-d.llun.in.th/assets/gimmie-widget.all.js";
+        ref.parentNode.insertBefore(js, ref);
+      }(document));
+

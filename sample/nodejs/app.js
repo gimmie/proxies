@@ -5,7 +5,8 @@ var fs = require('fs'),
     mime = require('mime'),
     path = require('path'),
     querystring = require('querystring'),
-    url = require('url');
+    url = require('url'),
+    jade = require('jade');
 
 var Cookies = require('cookies');
 var ApiProxy = gimmie.ApiProxy;
@@ -63,12 +64,47 @@ var server = http.createServer(
         }
       }
 
-      res.writeHead(200, {
-        'Content-Type': mime.lookup(_path)
-      });
 
-      var fileStream = fs.createReadStream(_path);
-      fileStream.pipe(res);
+      if (/\.jade$/.test(_path)) {
+
+        var options = {
+          compileDebug: true,
+          debug: false,
+          pretty: true,
+          cache: false
+        }
+
+        if (cookies.get('_gm_user') || _query['user']) {
+          options.user = _query['user'] || cookies.get('_gm_user');
+        }
+
+        if (_query['logout']) {
+          delete options.user;
+        }
+        
+        jade.renderFile(_path, options, function (err, str) {
+          if (err) {
+            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.end(err.toString());
+            return;
+          }
+          res.writeHead(200, {
+            'Content-Type': 'text/html',
+            'Pragma': 'no-cache',
+            'Expires': '-1'
+          });
+          res.end(str);
+        });
+      }
+      else {
+        res.writeHead(200, {
+          'Content-Type': mime.lookup(_path)
+        });
+
+        var fileStream = fs.createReadStream(_path);
+        fileStream.pipe(res);
+      }
+
     }
     else {
       res.writeHead(404, {
