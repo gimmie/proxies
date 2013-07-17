@@ -17,19 +17,19 @@ html
         position: relative;
         left: 100px;
       }
-    meta(name='viewport',content='width=device-width, initial-scale=1 maxumum-scale=1.0;')
+    meta(name='viewport',content='width=device-width, initial-scale=1;')
     meta(http-equiv='Pragma',content='no-cache')
     meta(http-equiv='Expires',content'-1')
   body
     .gimmie-control
       h2 Events
       ul.events
-        li: a(href='#',data-event-id='finish_level') Finish game level
-        li: a(href='#',data-event-id='share') Share Something
+        li: a(href='#',data-gimmie-event='finish_level') Finish game level
+        li: a(href='#',data-gimmie-event='share') Share Something
 
     #gimmie-root
 
-
+    script(type='text/javascript',src='jquery-1.8.3.min.js')
     script(type='text/javascript')
       var _gimmie = {
         "api"                         : "//192.168.2.118:8080/gimmie?gimmieapi=",
@@ -38,6 +38,8 @@ html
         "key"                         : "0a60299a6b0148ab76593b8e6e4e",
         "gimmieURL"                   : "http://api-d.llun.in.th",
         "name"                        : "#{user}",
+
+        "auto_notify_after_load"      : true,
 
         "_": {
           "enable_responsive": true,
@@ -52,7 +54,15 @@ html
         if (d.getElementById(id)) {return;}
         js = d.createElement("script"); js.id = id; js.async = true;
         // js.src = "http://api.gimmie.lab:3000/assets/gimmie-widget.nojq.js";
-        js.src = "http://api-d.llun.in.th/assets/gimmie-widget.all.js";
+        js.src = "http://api-d.llun.in.th/assets/gimmie-widget.nojq.js";
         ref.parentNode.insertBefore(js, ref);
+
+        $('.events a').click(function (item) {
+          var element = _gmjq(item.target);
+          var eventName = element.attr('data-gimmie-event');
+          GimmieWidget.API.triggerEvent(eventName, function () {
+            GimmieWidget.updatePoints();
+          });
+        });
       }(document));
 

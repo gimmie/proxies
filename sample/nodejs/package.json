@@ -7,6 +7,7 @@
     "cookies": "*",
     "gimmie-node": "*",
     "mime": "*",
+    "node-gcm": "*",
     "jade": "*"
   },
   "engines":{
