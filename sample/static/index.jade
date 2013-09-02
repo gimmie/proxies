@@ -1,4 +1,4 @@
-html
+html(ng-app='')
   head
     style(type='text/css').
       .gimmie-intext-sample {
@@ -19,16 +19,17 @@ html
       }
     meta(name='viewport',content='width=device-width, initial-scale=1;')
     meta(http-equiv='Pragma',content='no-cache')
-  body
+  body(ng-controller='EventsListCtrl')
     .gimmie-control
       h2 Events
       ul.events
-        li: a(href='#',data-gimmie-event='finish_level') Finish game level
-        li: a(href='#',data-gimmie-event='share') Share Something
+        li(ng-repeat='event in events')
+          a(href='#',ng-click='triggerEvent(event.name)') {{event.description}}
 
     #gimmie-root
 
-    script(type='text/javascript',src='angular.min.js').
+    script(type='text/javascript',src='angular.min.js')
+    script(type='text/javascript',src='controllers.js')
     script(type='text/javascript').
       var _gimmie = {
         "api"                         : "//192.168.2.118:8080/gimmie?gimmieapi=",
@@ -55,31 +56,5 @@ html
         // js.src = "http://api.gimmie.lab:3000/assets/gimmie-widget.nojq.js";
         js.src = "http://api-d.llun.in.th/assets/gimmie-widget.all.js";
         ref.parentNode.insertBefore(js, ref);
-
-        var interval = setInterval(function () {
-          if (GimmieWidget) {
-            clearInterval(interval);
-
-            _gmjq('.events a').click(function (item) {
-              var element = _gmjq(item.target);
-              var eventName = element.attr('data-gimmie-event');
-              GimmieWidget.API.triggerEvent(eventName, function () {
-                GimmieWidget.updatePoints();
-              });
-            });
-
-            GimmieWidget.API.loadEvents([], function (data) {
-              var response = data.response;
-              if (response.success) {
-                var events = response.events;
-                events.forEach(function (event) {
-                  console.log (event);
-                });
-              }
-            });
-
-          }
-        }, 1000);
-
       }(document));
 
