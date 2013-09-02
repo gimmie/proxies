@@ -1,6 +1,6 @@
 html
   head
-    style(type='text/css')
+    style(type='text/css').
       .gimmie-intext-sample {
         width: auto;
         display: inline-block;
@@ -19,7 +19,6 @@ html
       }
     meta(name='viewport',content='width=device-width, initial-scale=1;')
     meta(http-equiv='Pragma',content='no-cache')
-    meta(http-equiv='Expires',content'-1')
   body
     .gimmie-control
       h2 Events
@@ -29,8 +28,8 @@ html
 
     #gimmie-root
 
-    script(type='text/javascript',src='jquery-1.8.3.min.js')
-    script(type='text/javascript')
+    script(type='text/javascript',src='angular.min.js').
+    script(type='text/javascript').
       var _gimmie = {
         "api"                         : "//192.168.2.118:8080/gimmie?gimmieapi=",
         "locale"                      : "en",
@@ -54,15 +53,33 @@ html
         if (d.getElementById(id)) {return;}
         js = d.createElement("script"); js.id = id; js.async = true;
         // js.src = "http://api.gimmie.lab:3000/assets/gimmie-widget.nojq.js";
-        js.src = "http://api-d.llun.in.th/assets/gimmie-widget.nojq.js";
+        js.src = "http://api-d.llun.in.th/assets/gimmie-widget.all.js";
         ref.parentNode.insertBefore(js, ref);
 
-        $('.events a').click(function (item) {
-          var element = _gmjq(item.target);
-          var eventName = element.attr('data-gimmie-event');
-          GimmieWidget.API.triggerEvent(eventName, function () {
-            GimmieWidget.updatePoints();
-          });
-        });
+        var interval = setInterval(function () {
+          if (GimmieWidget) {
+            clearInterval(interval);
+
+            _gmjq('.events a').click(function (item) {
+              var element = _gmjq(item.target);
+              var eventName = element.attr('data-gimmie-event');
+              GimmieWidget.API.triggerEvent(eventName, function () {
+                GimmieWidget.updatePoints();
+              });
+            });
+
+            GimmieWidget.API.loadEvents([], function (data) {
+              var response = data.response;
+              if (response.success) {
+                var events = response.events;
+                events.forEach(function (event) {
+                  console.log (event);
+                });
+              }
+            });
+
+          }
+        }, 1000);
+
       }(document));
 

@@ -15,8 +15,8 @@ var ApiProxy = gimmie.ApiProxy;
 
 var api = new ApiProxy({
   'cookie_key':   '_gm_user',
-  'oauth_key':    '0a60299a6b0148ab76593b8e6e4e',
-  'oauth_secret': 'c42bbd91cb9ff6c818f1ef50a07a',
+  'oauth_key':    '9fe57f920754c967d92b9ada5824',
+  'oauth_secret': 'd2d0663765867215b3161173c226',
   'url_prefix':   endpoint
 });
 
@@ -81,7 +81,7 @@ var server = http.createServer(
         if (_query['logout']) {
           delete options.user;
         }
-        
+       
         jade.renderFile(_path, options, function (err, str) {
           if (err) {
             res.writeHead(200, { 'Content-Type': 'text/plain' });
@@ -90,8 +90,7 @@ var server = http.createServer(
           }
           res.writeHead(200, {
             'Content-Type': 'text/html',
-            'Pragma': 'no-cache',
-            'Expires': '-1'
+            'Pragma': 'no-cache'
           });
           res.end(str);
         });
