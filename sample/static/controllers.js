@@ -13,6 +13,14 @@ function EventsListCtrl($scope) {
 
   }
 
+  $scope.triggerCheckin = function () {
+    var venue = prompt('Check in at');
+    GimmieWidget.API.checkin('2-gowalla-of-venue', venue,
+      function (data) {
+        console.log (data);
+      });
+  }
+
   var interval = setInterval(function () {
 
     if (window.GimmieWidget) {

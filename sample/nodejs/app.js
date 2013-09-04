@@ -75,7 +75,7 @@ var server = http.createServer(
         }
 
         if (cookies.get('_gm_user') || _query['user']) {
-          options.user = _query['user'] || cookies.get('_gm_user');
+          options.user = cookies.get('_gm_user') || _query['user'];
         }
 
         if (_query['logout']) {

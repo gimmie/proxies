@@ -26,6 +26,11 @@ html(ng-app='')
         li(ng-repeat='event in events')
           a(href='#',ng-click='triggerEvent(event.name)') {{event.description}}
 
+      h2 Checkin
+      ul.checkins
+        li
+          a(href='#',ng-click='triggerCheckin()') Checkin
+
     #gimmie-root
 
     script(type='text/javascript',src='angular.min.js')
