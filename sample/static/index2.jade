@@ -17,7 +17,7 @@ html(ng-app='')
         position: relative;
         left: 100px;
       }
-    meta(name='viewport',content='width=device-width, initial-scale=1;')
+    meta(name='viewport',content='width=device-width, initial-scale=1')
     meta(http-equiv='Pragma',content='no-cache')
   body(ng-controller='EventsListCtrl')
     .gimmie-control
@@ -35,43 +35,48 @@ html(ng-app='')
 
     script(type='text/javascript',src='angular.min.js')
     script(type='text/javascript',src='controllers.js')
-    script(type='text/javascript').
-      var _gimmie = {
-        "api"                         : "//192.168.2.118:8080/gimmie?gimmieapi=",
-        "key"                         : "0a60299a6b0148ab76593b8e6e4e",
-        "user"                        : { 
-          "name"                      : "#{user}",
-          "email"                     : "user@gimmieworld.com"
-        },
+    | <script type="text/javascript">
+    |   var _gimmie = {
+    |     "endpoint"                    : "//192.168.2.118:8080/gimmie?gimmieapi=",
+    |     "gimmie_endpoint"             : "http://api-d.gimmie.lab", // An optional endpoint for bypassing secret authentication
+    |     "key"                         : "0a60299a6b0148ab76593b8e6e4e",
+    |     "country"                     : "global",
+    |     "locale"                      : "us",
+    if user
+      |     "user"                        : { 
+      |       "name"                      : "#{user}",
+      |       "email"                     : "user@gimmieworld.com"
+      |     },
 
-        "options"                     : {
-          "animate"                   : true,
-          "auto_show_notification"    : true,
-          "country"                   : "global",
-          "locale"                    : "us",
-          "notification_timeout"      : 10,
-          "responsive"                : true,
-          "show_anonymous_rewards"    : true,
-          "shuffle_reward"            : true,
-        },
+    |     "options"                     : {
+    |       "animate"                   : true,
+    |       "auto_show_notification"    : true,
+    |       "notification_timeout"      : 10,
+    |       "responsive"                : true,
+    |       "show_anonymous_rewards"    : true,
+    |       "shuffle_reward"            : true,
+    |     },
 
-        "events"                      : {
-          "onload"                    : function () {
-          },
-          "login"                     : function () {
-          }
-        },
+    |     "events"                      : {
+    |       "onload"                    : function () {
+    |       },
+    |       "login"                     : function () {
+    |       }
+    |     },
 
-        "text"                        : {
-          "help"                      : ""
-        }
-      };
+    |     "text"                        : {
+    |       "anonymous_bar_message"     : "Click here to signin",
+    |       "bar_rewards_button"        : "Rewards",
+    |       "help"                      : ""
+    |     }
+    |   };
 
-      (function(d){
-        var js, id = "gimmie-widget", ref = d.getElementsByTagName("script")[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement("script"); js.id = id; js.async = true;
-        js.src = "http://api-d.llun.in.th/assets/gimmie-widget2.all.js";
-        ref.parentNode.insertBefore(js, ref);
-      }(document));
+    |   (function(d){
+    |     var js, id = "gimmie-widget", ref = d.getElementsByTagName("script")[0];
+    |     if (d.getElementById(id)) {return;}
+    |     js = d.createElement("script"); js.id = id; js.async = true;
+    |     js.src = "http://api-d.llun.in.th/assets/gimmie-widget2.all.js";
+    |     ref.parentNode.insertBefore(js, ref);
+    |   }(document));
+    | </script>
 
