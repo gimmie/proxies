@@ -8,7 +8,8 @@ function EventsListCtrl($scope) {
   $scope.triggerEvent = function (eventName) {
 
     GimmieWidget.API.triggerEvent(eventName, function () {
-      GimmieWidget.updatePoints();
+      //GimmieWidget.updatePoints();
+      location.reload();
     });
 
   }

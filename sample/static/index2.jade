@@ -42,25 +42,29 @@ html(ng-app='')
     |     "key"                         : "0a60299a6b0148ab76593b8e6e4e",
     |     "country"                     : "global",
     |     "locale"                      : "us",
+    |     "debug"                       : true,
     if user
       |     "user"                        : { 
       |       "name"                      : "#{user}",
+      |       "realname"                  : "Real Username",
       |       "email"                     : "user@gimmieworld.com"
       |     },
 
     |     "options"                     : {
     |       "animate"                   : true,
     |       "auto_show_notification"    : true,
-    |       "notification_timeout"      : 10,
+    |       "notification_timeout"      : 5,
     |       "responsive"                : true,
     |       "show_anonymous_rewards"    : true,
     |       "shuffle_reward"            : true,
     |     },
 
     |     "events"                      : {
-    |       "onload"                    : function () {
+    |       "widgetLoad"                : function (data) {
+    |         console.log ('Loaded');
     |       },
-    |       "login"                     : function () {
+    |       "login"                     : function (data) {
+    |         console.log (data);
     |       }
     |     },
 
