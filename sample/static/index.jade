@@ -37,7 +37,7 @@ html(ng-app='')
     script(type='text/javascript',src='controllers.js')
     script(type='text/javascript').
       var _gimmie = {
-        "api"                         : "//192.168.2.118:8080/gimmie?gimmieapi=",
+        "api"                         : "//localhost:8080/gimmie?gimmieapi=",
         "locale"                      : "en",
 
         "key"                         : "0a60299a6b0148ab76593b8e6e4e",
@@ -60,7 +60,7 @@ html(ng-app='')
         if (d.getElementById(id)) {return;}
         js = d.createElement("script"); js.id = id; js.async = true;
         // js.src = "http://api.gimmie.lab:3000/assets/gimmie-widget.nojq.js";
-        js.src = "http://api-d.llun.in.th/assets/gimmie-widget.all.js";
+        js.src = "http://api-d.gimmie.lab/assets/gimmie-widget.all.js";
         ref.parentNode.insertBefore(js, ref);
       }(document));
 
