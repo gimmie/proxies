@@ -18,7 +18,7 @@ function EventsListCtrl($scope) {
     var venue = prompt('Check in at');
     GimmieWidget.API.checkin('2-gowalla-of-venue', venue,
       function (data) {
-        console.log (data);
+      location.reload();
       });
   }
 
