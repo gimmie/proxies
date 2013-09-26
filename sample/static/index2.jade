@@ -17,6 +17,11 @@ html(ng-app='')
         position: relative;
         left: 100px;
       }
+
+      .components li {
+        cursor: pointer;
+      }
+
     meta(name='viewport',content='width=device-width, initial-scale=1')
     meta(http-equiv='Pragma',content='no-cache')
   body(ng-controller='EventsListCtrl')
@@ -80,7 +85,11 @@ html(ng-app='')
     |       "anonymous_bar_message"     : "Click here to signin",
     |       "bar_rewards_button"        : "Rewards",
     |       "help"                      : ""
-    |     }
+    |     },
+    
+    |     "templates"                   : {
+    |       "badge-notification"        : "<div class='full-screen-notification'></div>"
+    |     },
     |   };
 
     |   (function(d){
