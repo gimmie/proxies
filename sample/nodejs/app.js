@@ -11,7 +11,7 @@ var fs = require('fs'),
 var Cookies = require('cookies');
 var ApiProxy = gimmie.ApiProxy;
 
- var endpoint = 'http://api-d.gimmie.lab:3000';
+var endpoint = 'http://api.llun.in';
 
 var api = new ApiProxy({
   'cookie_key':   '_gm_user',
