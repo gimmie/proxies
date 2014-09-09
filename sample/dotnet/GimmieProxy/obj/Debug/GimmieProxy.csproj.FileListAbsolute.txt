@@ -1,0 +1,111 @@
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\GimmieProxy.dll.config
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\GimmieProxy.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\GimmieProxy.pdb
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Antlr3.Runtime.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\EntityFramework.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\EntityFramework.SqlServer.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.Core.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.Owin.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Host.SystemWeb.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Cookies.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Facebook.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Google.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.OAuth.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Twitter.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Web.Infrastructure.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Newtonsoft.Json.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Owin.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.Helpers.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.Mvc.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.Optimization.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.Razor.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.Deployment.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.Razor.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\WebGrease.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.Helpers.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.Mvc.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.Optimization.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.Razor.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.Deployment.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.Razor.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Newtonsoft.Json.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Antlr3.Runtime.pdb
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\EntityFramework.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\EntityFramework.SqlServer.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.Core.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Facebook.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Cookies.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.OAuth.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Google.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Twitter.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\obj\Debug\GimmieProxy.csprojResolveAssemblyReference.cache
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\obj\Debug\GimmieProxy.dll
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\obj\Debug\GimmieProxy.pdb
+c:\users\kaka\documents\visual studio 2013\Projects\GimmieProxy\GimmieProxy\bin\Newtonsoft.Json.pdb
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\GimmieProxy.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\GimmieProxy.pdb
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Antlr3.Runtime.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\EntityFramework.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\EntityFramework.SqlServer.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Newtonsoft.Json.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Owin.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.Helpers.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.Mvc.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.Optimization.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.Razor.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.Deployment.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.Razor.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\WebGrease.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.Helpers.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.Mvc.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.Optimization.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.Razor.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.Deployment.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\System.Web.WebPages.Razor.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Newtonsoft.Json.pdb
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Newtonsoft.Json.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Antlr3.Runtime.pdb
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\EntityFramework.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\EntityFramework.SqlServer.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\obj\Debug\GimmieProxy.csprojResolveAssemblyReference.cache
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\obj\Debug\GimmieProxy.dll
+C:\Users\root\Dropbox\GimmieProxy\GimmieProxy\obj\Debug\GimmieProxy.pdb
