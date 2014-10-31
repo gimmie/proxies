@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'gimmie'
-  s.version     = '0.1.2'
+  s.version     = '0.1.3'
   s.summary     = "Proxy for Gimmie API"
   s.description = "Rack application to provide a reverse proxy for Gimmie REST API"
   s.authors     = ["Chew Choon Keat"]
