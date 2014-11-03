@@ -53,7 +53,9 @@ If your `GIMMIE_URL_PREFIX` is `https://api.gimmieworld.com`, then an OAuth requ
 
 To add Gimmie Proxy into your existing Rails application, simply provide a route in your `config/routes.rb` file, e.g.
 
-	match "/gimmie_proxy" => Gimmie::Proxy.new
+	get "/gimmie_proxy" => Gimmie::Proxy.new
+
+Restart your rails application.
 
 You can test by sending a HTTP request, e.g.
 
